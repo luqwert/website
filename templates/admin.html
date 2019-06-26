@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>后台管理</title>
+    <link rel="shortcut icon" href="../static/img/touxiang.png">
+    <!--<link rel="stylesheet" href="../static/css/bootstrap.min.css">-->
+    <!--<script src="../static/js/bootstrap.min.js"></script>-->
+    <script src="../static/js/vue.js"></script>
+    <!-- bootstrap 4.x is supported. You can also use the bootstrap css 3.3.x versions -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link href="../static/bootstrap-fileinput/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+    <!-- if using RTL (Right-To-Left) orientation, load the RTL CSS file after fileinput.css by uncommenting below -->
+    <!-- link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput-rtl.min.css" media="all" rel="stylesheet" type="text/css" /-->
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <!-- piexif.min.js is needed for auto orienting image files OR when restoring exif data in resized images and when you
+        wish to resize images before upload. This must be loaded before fileinput.min.js -->
+    <script src="../static/bootstrap-fileinput/js/plugins/piexif.min.js" type="text/javascript"></script>
+    <!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview.
+        This must be loaded before fileinput.min.js -->
+    <script src="../static/bootstrap-fileinput/js/plugins/sortable.min.js" type="text/javascript"></script>
+    <!-- purify.min.js is only needed if you wish to purify HTML content in your preview for
+        HTML files. This must be loaded before fileinput.min.js -->
+    <script src="../static/bootstrap-fileinput/js/plugins/purify.min.js" type="text/javascript"></script>
+    <!-- popper.min.js below is needed if you use bootstrap 4.x. You can also use the bootstrap js
+       3.3.x versions without popper.min.js. -->
+    <script src="../static/js/popper.min.js"></script>
+    <!-- bootstrap.min.js below is needed if you wish to zoom and preview file content in a detail modal
+        dialog. bootstrap 4.x is supported. You can also use the bootstrap js 3.3.x versions. -->
+    <script src="../static/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- the main fileinput plugin file -->
+    <script src="../static/bootstrap-fileinput/js/fileinput.min.js"></script>
+    <!-- optionally if you need a theme like font awesome theme you can include it as mentioned below -->
+    <script src="../static/bootstrap-fileinput/themes/fa/theme.js"></script>
+    <!-- optionally if you need translation for your language then include  locale file as mentioned below -->
+    <script src="../static/bootstrap-fileinput/js/locales/LANG.js"></script>
+    <style>
+        h2 {
+            width: 100%;
+            height: 3em;
+            line-height: 3em;
+            background-color: #0069d9;
+            color: #ffffff;
+            padding-bottom: 2em;
+            text-indent: 2em;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div>
+        <header>
+            <h2>周报文件后台数据上传</h2>
+        </header>
+    </div>
+    <div>
+        <!--<form enctype="multipart/form-data" method="POST" action="/admin">-->
+            <!--<lable class="col-form-label col-md-4">cnfeol1：</lable>-->
+            <!--<input class="form-control-file" type="file" name="file1" multiple>-->
+            <!--<input class="btn-block col-md-2" type="submit" value="提交">-->
+
+        <!--</form>-->
+        <!--<input id="input-b1" name="input-b1" type="file" class="file" data-browse-on-zone-click="true">-->
+        <!--<input id="input-id" type="file" class="file" data-preview-file-type="text" >-->
+        <form enctype="multipart/form-data" method="POST" action="/admin" id="form1">
+            <input id="input-id" name="myfile" type="file" class="file" multiple >
+        </form>
+    </div>
+</div>
+
+<script>
+    // var vm = new Vue({
+    //     el: '#app',
+    //     data: {},
+    //     methods:{}
+    // })
+
+    $('#file-fr').fileinput({
+        theme: 'fas',
+        language: 'fr',
+        uploadUrl: '#',
+        allowedFileExtensions: ['jpg', 'png', 'gif']
+    });
+    $('#file-es').fileinput({
+        theme: 'fas',
+        language: 'es',
+        uploadUrl: '#',
+        allowedFileExtensions: ['jpg', 'png', 'gif']
+    });
+    $("#file-0").fileinput({
+        theme: 'fas',
+        uploadUrl: '#'
+    }).on('filepreupload', function(event, data, previewId, index) {
+        alert('The description entered is:\n\n' + ($('#description').val() || ' NULL'));
+    });
+    $("#file-1").fileinput({
+        theme: 'fas',
+        uploadUrl: '#', // you must set a valid URL here else you will get an error
+        allowedFileExtensions: ['jpg', 'png', 'gif'],
+        overwriteInitial: false,
+        maxFileSize: 1000,
+        maxFilesNum: 10,
+        //allowedFileTypes: ['image', 'video', 'flash'],
+        slugCallback: function (filename) {
+            return filename.replace('(', '_').replace(']', '_');
+        }
+    });
+    /*
+     $(".file").on('fileselect', function(event, n, l) {
+     alert('File Selected. Name: ' + l + ', Num: ' + n);
+     });
+     */
+    $("#file-3").fileinput({
+        theme: 'fas',
+        showUpload: false,
+        showCaption: false,
+        browseClass: "btn btn-primary btn-lg",
+        fileType: "any",
+        previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+        overwriteInitial: false,
+        initialPreviewAsData: true,
+        initialPreview: [
+            "http://lorempixel.com/1920/1080/transport/1",
+            "http://lorempixel.com/1920/1080/transport/2",
+            "http://lorempixel.com/1920/1080/transport/3"
+        ],
+        initialPreviewConfig: [
+            {caption: "transport-1.jpg", size: 329892, width: "120px", url: "{$url}", key: 1},
+            {caption: "transport-2.jpg", size: 872378, width: "120px", url: "{$url}", key: 2},
+            {caption: "transport-3.jpg", size: 632762, width: "120px", url: "{$url}", key: 3}
+        ]
+    });
+    $("#file-4").fileinput({
+        theme: 'fas',
+        uploadExtraData: {kvId: '10'}
+    });
+    $(".btn-warning").on('click', function () {
+        var $el = $("#file-4");
+        if ($el.attr('disabled')) {
+            $el.fileinput('enable');
+        } else {
+            $el.fileinput('disable');
+        }
+    });
+    $(".btn-info").on('click', function () {
+        $("#file-4").fileinput('refresh', {previewClass: 'bg-info'});
+    });
+    /*
+     $('#file-4').on('fileselectnone', function() {
+     alert('Huh! You selected no files.');
+     });
+     $('#file-4').on('filebrowse', function() {
+     alert('File browse clicked for #file-4');
+     });
+     */
+    $(document).ready(function () {
+        $("#test-upload").fileinput({
+            'theme': 'fas',
+            'showPreview': false,
+            'allowedFileExtensions': ['jpg', 'png', 'gif'],
+            'elErrorContainer': '#errorBlock'
+        });
+        $("#kv-explorer").fileinput({
+            'theme': 'explorer-fas',
+            'uploadUrl': '#',
+            overwriteInitial: false,
+            initialPreviewAsData: true,
+            initialPreview: [
+                "http://lorempixel.com/1920/1080/nature/1",
+                "http://lorempixel.com/1920/1080/nature/2",
+                "http://lorempixel.com/1920/1080/nature/3"
+            ],
+            initialPreviewConfig: [
+                {caption: "nature-1.jpg", size: 329892, width: "120px", url: "{$url}", key: 1},
+                {caption: "nature-2.jpg", size: 872378, width: "120px", url: "{$url}", key: 2},
+                {caption: "nature-3.jpg", size: 632762, width: "120px", url: "{$url}", key: 3}
+            ]
+        });
+        /*
+         $("#test-upload").on('fileloaded', function(event, file, previewId, index) {
+         alert('i = ' + index + ', id = ' + previewId + ', file = ' + file.name);
+         });
+         */
+    });
+
+</script>
+</body>
+</html>

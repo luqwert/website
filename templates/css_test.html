@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../static/js/vue.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+<div id="paomadeng">
+    <input type="button" value="1111" @click="paoqilai">
+    <input type="button" value="2222" @click="tingzhi">
+    <h2>{{ msg }}</h2>
+</div>
+<script>
+    var paomadeng = new Vue({
+        el: '#paomadeng',
+        data: {
+            msg:'qwertyuio',
+            intervalId: null
+        },
+        methods:{
+            paoqilai() {
+                // console.log(this.msg);
+                if (this.intervelId != null) return;
+                this.intervelId = setInterval(() => {
+                    var start = this.msg.substring(0,1);
+                    var end = this.msg.substring(1);
+                    this.msg = end + start
+                },400)
+
+                // this.msg = this.msg.substring(0,1) + this.msg.substring(1)
+            },
+            tingzhi() {
+                clearInterval(this.intervelId);
+                this.intervelId = null
+
+            }
+        }
+    })
+</script>
+</body>
+</html>

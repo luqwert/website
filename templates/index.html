@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="shortcut icon" href="../static/img/touxiang.png">
+    <!--<link rel="stylesheet" href="../static/css/imagehover.css">-->
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            /*display: flex;*/
+            /*justify-content: center;*/
+            background-color: floralwhite;
+        }
+        body {
+            width: 986px;
+            margin: 0 auto;
+
+        }
+        #header,#biaotiliebiao,#mianbody,#bottom {
+            width: 986px;
+            margin: 0 auto;
+            overflow:hidden;
+        }
+        body {
+            padding: 0 10px;
+        }
+
+        #logo {
+            height: 100px;
+            width: 100px;
+            float: left;
+        }
+        #logo a img {
+            display: block;
+        }
+        #logo a {
+            display: block;
+        }
+        #logo img {
+            height: 100px;
+            width: 100px;
+        }
+        @font-face {
+            font-family: myfont;
+            src: url("../static/PangMenZhengDaoCuShuTi-2.ttf");
+        }
+
+        #slogan {
+
+            float: left;
+            display: block;
+            height: 100px;
+            width: 886px;
+            line-height: 140px;
+            font-size: 40px;
+            text-align: center;
+            background: linear-gradient(to right,floralwhite,yellow,greenyellow,dodgerblue);            border-radius:10px;
+
+        }
+        #slogan p {
+            font-family:myfont;
+            background: linear-gradient(45deg,#ee3333, green, #ff0022);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 10px 3px 5px dimgrey;
+            font-style: italic;
+            line-height: 100px;
+            /*transform:matrix(1.3,-0.03,0.8,0.9,50,0)*/
+        }
+        #biaotiliebiao {
+            margin: 5px 0;
+            float: left;
+            width: 986px;
+            height: 30px;
+            background:linear-gradient(to bottom,floralwhite,steelblue);
+            border-radius:10px;
+
+        }
+        #biaotiliebiao li{
+            float: left;
+            list-style: none;
+        }
+        #biaotiliebiao li a {
+
+            padding: 0 64px;
+            text-decoration: none;
+            line-height: 30px;
+            font-size: 20px;
+            text-align: center;
+            float: left;
+            color: #555555;
+        }
+        #biaotiliebiao li a:hover{
+            color: seagreen;
+            background:linear-gradient(to bottom,whitesmoke,deepskyblue);
+            -webkit-transition-timing-function:  ;
+            border-radius:10px;
+            font-size: 21px;
+
+        }
+        .shouye:link {
+            color: seagreen;
+            background:linear-gradient(to bottom,whitesmoke,lightskyblue);
+            border-radius:10px;
+        }
+
+        #zhaopianlunbo {
+            width: 986px;
+            height: 1316px;
+            position:relative;
+            overflow: hidden;
+            float: left;
+        }
+        #zhaopianlunbo img {
+            display: block;
+            width: 986px;
+            height: 1316px;
+            border-radius:10px;
+             transition: all 0.5s;
+             -webkit-transition: all 0.5s;
+        }
+        .tupianshuoming {
+            width: 986px;
+            background: rgba(0,0,0,0.5);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            color: #ffffff;
+            transform: rotateY(90deg);
+            -webkit-transform: rotateY(90deg);
+            transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+            overflow: hidden;
+            height: 0;
+            z-index: 4000;
+            border-bottom-left-radius:10px;
+            border-bottom-right-radius:10px;
+
+        }
+        .tupianshuoming p {
+            line-height: 50px;
+            color: #ffffff;
+        }
+        #zhaopianlunbo:hover .tupianshuoming {
+            height: 50px;
+            /*transform: translateY(0px);*/
+            /*-webkit-transform: translateY(0px);*/
+            transform: rotateY(0deg);
+            -webkit-transform: rotateY(0deg);
+        }
+         #zhaopianlunbo:hover img {
+             box-shadow: 5px 5px #555555;;
+             -webkit-box-shadow: 5px 5px #555555;
+             transition: all 0.5s;
+             -webkit-transition: all 0.5s;
+         }
+        #xinxiliebiao {
+            float: left;
+            border-radius:5px;
+
+        }
+        #xinxiliebiao div {
+            display: block;
+            float: left;
+            border-radius:5px;
+        }
+        #xinxiliebiao  ul {
+            display: block;
+            float: left;
+            width: 323px;
+            margin: 5px 5px;
+            margin-left: 0;
+            border-radius:5px;
+        }
+        #xinxiliebiao ul lt {
+            display: block;
+            font-size: 20px;
+            font-weight: bold;
+            height: 36px;
+            width: 323px;
+            line-height: 36px;
+            background: linear-gradient(to right,lightskyblue,whitesmoke);
+            border-top-left-radius: 5px;
+
+        }
+        #xinxiliebiao ul li {
+            list-style: none;
+            background: linear-gradient(to right,darkturquoise,white);
+            height: 25px;
+            font-size: 18px;
+            white-space: normal;
+        }
+        #xinxiliebiao ul li:last-child {
+            border-bottom-right-radius: 5px;
+        }
+        #xinxiliebiao ul li:last-child {
+            border-bottom-left-radius: 5px;
+        }
+        #bottom {
+            float: left;
+            padding: 25px 0;
+        }
+        #bottom p {
+            display: block;
+            float: left;
+            width: 986px;
+            height: 20px;
+            text-align: center;
+            font-size: small;
+            color: #1155;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+<div id="logo">
+    <a href="#">
+        <img src="../static/img/touxiang.png" alt="logo">
+    </a>
+</div>
+<div id="slogan">
+    <p>学&nbsp&nbsp海&nbsp&nbsp无&nbsp&nbsp涯&nbsp&nbsp回&nbsp&nbsp头&nbsp&nbsp是&nbsp&nbsp岸</p>
+</div>
+</div>
+<div id="biaotiliebiao">
+    <ul>
+        <li><a class="shouye" href="#">首页</a></li>
+        <li><a  href="./report">数据报告</a></li>
+        <li><a  href="#">技术博客</a></li>
+        <li><a  href="./shujuchaxun">数据查询</a></li>
+        <li><a  href="#">小工具</a></li>
+    </ul>
+</div>
+<div id="mianbody">
+
+    <div id="zhaopianlunbo">
+        <!--<figure class="imghvr-reveal-up">-->
+            <!--<img class="lunbozhaopian" src="../static/img/lunbo2.jpg" alt="lushiyue">-->
+            <!--<figcaption>-->
+                <!--<p>我是这条街的扛把子，有谁不服？</p>-->
+            <!--</figcaption>-->
+        <!--</figure>-->
+        <img class="lunbozhaopian" src="../static/img/lunbo2.jpg" alt="lushiyue">
+        <div class="tupianshuoming">
+            <p>我是这条街的扛把子，有谁不服？</p>
+        </div>
+    </div>
+    <div id="xinxiliebiao">
+        <div id="content-left">
+            <ul>
+                <lt>
+                    个人信息
+                </lt>
+                <li>姓名：芦胜</li>
+                <li>出生年份：1986</li>
+                <li>籍贯：湖南</li>
+                <li>学历：本科</li>
+                <li>毕业院校：东华大学</li>
+                <li>专业：高分子材料</li>
+            </ul>
+        </div>
+        <div id="content-middle">
+            <ul>
+                <lt>
+                    目前状态
+                </lt>
+                <li>华锟金属材料（上海）有限公司</li>
+                <li>总经理助理</li>
+                <li>2010年月至今</li>
+                <li>管理焦粉、金属锰系列产品业务</li>
+                <li>跟踪主要炼钢原料市场行情</li>
+                <li>寻求业务管理中后台工作</li>
+            </ul>
+        </div>
+        <div id="content-right">
+            <ul>
+                <lt>
+                    职业技能
+                </lt>
+                <li>精通内外贸业务流程及风险控制</li>
+                <li>多年铁矿、锰矿等大宗内外贸操作经验</li>
+                <li>心理咨询师（三级）</li>
+                <li>证券从业资格</li>
+                <li>Python爬虫及办公自动化</li>
+                <li>熟悉各种数据库和Web应用框架</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="bottom">
+    <p id="lianxifangshi">联系方式：lusheng1234@126.com</p>
+    <p id="banquan">版权所有Copyright © www.lushengsheng.cn All Rights Reserved</p>
+
+</div>
+
+</body>
+</html>

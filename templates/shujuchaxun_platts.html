@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据查询</title>
+    <script type="text/javascript" src="../static/echarts.min.js"></script>
+    <script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+    <!-- 引入jquery.js -->
+    <link rel="shortcut icon" href="../static/img/touxiang.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            /*display: flex;*/
+            /*justify-content: center;*/
+            /*background-color: floralwhite;*/
+        }
+        body {
+            width: 986px;
+            margin: 0 auto;
+        }
+        #header,#biaotiliebiao,#mianbody,#bottom {
+            width: 986px;
+            margin: 0 auto;
+        }
+        body {
+            padding: 0 10px;
+        }
+        #header,#biaotiliebiao,#mianbody,#bottom {
+            width: 986px;
+            margin: 0 auto;
+        }
+        #logo {
+            height: 100px;
+            width: 100px;
+            float: left;
+        }
+        #logo a img {
+            display: block;
+        }
+        #logo a {
+            display: block;
+        }
+        #logo img {
+            height: 100px;
+            width: 100px;
+        }
+        @font-face {
+            font-family: myfont;
+            src: url("../static/PangMenZhengDaoCuShuTi-2.ttf");
+        }
+        #slogan {
+
+            float: left;
+            display: block;
+            height: 100px;
+            width: 886px;
+            line-height: 140px;
+            font-size: 40px;
+            text-align: center;
+            background: linear-gradient(to right,floralwhite,yellow,greenyellow,steelblue);
+            border-radius:10px;
+        }
+        #slogan p {
+            font-family:myfont;
+            background: linear-gradient(45deg,#ee3333, green, #ff0022);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 10px 3px 5px dimgrey;
+            font-style: italic;
+            line-height: 100px;
+            /*transform:matrix(1.3,-0.03,0.8,0.9,50,0)*/
+        }
+        #biaotiliebiao {
+            margin: 5px 0;
+            float: left;
+            width: 986px;
+            height: 30px;
+            background:linear-gradient(to bottom,floralwhite,steelblue);
+            border-radius:10px;
+
+        }
+        #biaotiliebiao li{
+            float: left;
+            list-style: none;
+        }
+        #biaotiliebiao li a {
+            padding: 0 64px;
+            text-decoration: none;
+            line-height: 30px;
+            font-size: 20px;
+            text-align: center;
+            float: left;
+            color: #555555;
+        }
+        #biaotiliebiao li a:hover{
+            color: seagreen;
+            background:linear-gradient(to bottom,whitesmoke,deepskyblue);
+            -webkit-transition-timing-function:  ;
+            border-radius:10px;
+            font-size: 21px;
+
+        }
+        .shujuchaxun:link {
+            color: seagreen;
+            background:linear-gradient(to bottom,whitesmoke,lightskyblue);
+            border-radius:10px;
+        }
+        #chaxunbiaodan {
+            width: 100%;
+            margin: 10px auto;
+        }
+        #chaxunbiaodan article{
+            width: 50%;
+            float: left;
+        }
+        #chaxunbiaodan article div{
+            padding-left: 120px;
+            font-size: 15px;
+        }
+        #chaxunbiaodan article div header{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .tijiao{
+            width: 50px;
+            font-weight: bold;
+        }
+        #shujuzhexiantu {
+            width: 80%;
+            margin: 0 10%;
+        }
+
+        #price_list {
+            display: table;
+            margin-left: 120px;
+            /*column-width: fill-available;*/
+            text-align: center;
+            border:1px solid #000
+        }
+        #price_list td {
+            width: 250px;
+            border:1px solid #000
+        }
+        #price_list td tr {
+
+            width: 200px;
+        }
+        table tr:nth-child(odd) {
+            background-color: lightskyblue
+
+        }
+        table tr:nth-child(even) {
+            background-color: floralwhite;
+
+        }
+        table tr:first-child{
+            background-color: #00bbff;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div id="logo">
+            <a href="#">
+                <img src="../static/img/touxiang.png" alt="logo">
+            </a>
+        </div>
+        <div id="slogan">
+            <p>学&nbsp&nbsp海&nbsp&nbsp无&nbsp&nbsp涯&nbsp&nbsp回&nbsp&nbsp头&nbsp&nbsp是&nbsp&nbsp岸</p>
+        </div>
+    </div>
+    <div id="biaotiliebiao">
+    <ul>
+        <li><a class="shouye" href="./">首页</a></li>
+        <li><a class="baogao" href="./report">数据报告</a></li>
+        <li><a  href="#">技术博客</a></li>
+        <li><a class="shujuchaxun" href="#">数据查询</a></li>
+        <li><a  href="#">小工具</a></li>
+    </ul>
+    </div>
+    <section id="chaxunbiaodan">
+        <article id="platts">
+            <div>
+                <header>
+                    <p>普氏指数查询</p>
+                </header>
+                <section>
+                    <form action="../shujuchaxun_platts/" method="get">
+                    <lable>起始日期：</lable>
+                    <input type="date" required name="sdate"><br>
+                    <lable>结束日期：</lable>
+                    <input type="date" required name="edate"><br>
+                    <input class="tijiao" type="submit">
+                </form>
+                </section>
+            </div>
+        </article>
+        <article id="huachengmengpian">
+            <div>
+                <header>
+                    <p>锰片价格查询</p>
+                </header>
+                <section>
+                    <form action="">
+                    <lable>起始日期：</lable>
+                    <input type="date" required ><br>
+                    <lable>结束日期：</lable>
+                    <input type="date" required><br>
+                    <input type="submit">
+                </form>
+                </section>
+            </div>
+        </article>
+    </section>
+    <section>
+        <div>
+            <!--<img id="shujuzhexiantu" src="../static/shujujieguo/platts.jpeg" alt="">-->
+        </div>
+        <div id="main" style="width: 800px;height:500px;margin: 0 auto;"></div>
+        <div>
+            <table id="price_list" cellpadding="0" cellspacing="0" >
+                {% for line in price_list %}
+                    <tr>
+                        {% for li in line %}
+                            <td>&nbsp{{ li }}&nbsp</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('main'));
+        var app = {
+        xday:[],
+        yvalue1:[],
+        yvalue2:[],
+    };
+        // 发送ajax请求，从后台获取json数据
+        $(document).ready(function () {
+           getData();
+           console.log(app.xday);
+           console.log(app.yvalue1);
+           console.log(app.yvalue2);
+        });
+
+        function getData() {
+         $.ajax({
+            url:'/platts',
+            data:{sdate:'2018-1-2',edate:'2019-4-15'},
+            type:'POST',
+            async:false,
+            dataType:'json',
+            success:function(data) {
+                app.xday = data.xdays;
+                app.yvalue1 = data.yvalues1;
+                app.yvalue2 = data.yvalues2;
+                myChart.setOption({
+                    title: {},
+                    tooltip: {
+                        trigger: 'axis',
+                        dataZoom: [　　//x轴是否可以滑动
+                        {
+                          type: 'inside',
+                          start: 50, //从50%开始显示
+                          end: 100,　//到100%的位置　
+                          filterMode: 'empty',
+                          },
+                        ]
+                    },
+                    legend: {
+                        data:["62指数", "58指数", ],
+                        icon: "roundRect",
+                        itemGap:40,
+                    },
+                    xAxis: {
+                        data: app.xday
+                    },
+                    yAxis: {},
+                    series: [{
+                        name: '62指数',
+                        type: 'line',
+                        data: app.yvalue1,
+                        markLine : { data : [ {type : 'average', name: '平均值'} ] }
+                    },{
+                        name: '58指数',
+                        type: 'line',
+                        data: app.yvalue2,
+                        markLine : { data : [ {type : 'average', name: '平均值'} ] }
+                    }]
+                })
+            },
+            error:function (msg) {
+                console.log(msg);
+                alert('系统发生错误');
+            }
+        })
+    }
+
+        // myChart.setOption(option);
+    </script>
+</body>
+</html>
