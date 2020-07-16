@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 # _*_ coding:utf-8 _*_
 # @Author  : lusheng
+import time
 
 from flask import Flask,render_template,request,url_for, Response,redirect
 import platform
 from datetime import timedelta
 import os
 from pylab import *
+import matplotlib as mpl
 from xlrd import open_workbook
 from xlrd import xldate_as_datetime
 import datetime
@@ -129,7 +131,7 @@ def report():
     line = []
     # wb = load_workbook('E:\\python\\website\\static\\周报材料\\cnfeol1.xlsx')
     wb = load_workbook('./static/周报材料/cnfeol1.xlsx')
-    ws = wb.get_active_sheet()
+    ws = wb.active
     for row in range(ws.max_row):
         for col in range(ws.max_column):
             line.append(ws.cell(row=(row + 1), column=(col + 1)).value)
@@ -141,10 +143,10 @@ def report():
     # print(menggkuang_kucun)
     if float(stock2[-1][-2]) - float(stock2[-1][-3]) > 0:
         updown_mengkuang = '增加'
-        diff_mengkuang = str(stock2[-1][-1][1:]) + '吨'
+        diff_mengkuang = str(stock2[-1][-1]) + '吨'
     elif float(stock2[-1][-2]) - float(stock2[-1][-3]) < 0:
         updown_mengkuang = '减少'
-        diff_mengkuang = str(stock2[-1][-1][1:]) + '吨'
+        diff_mengkuang = str(stock2[-1][-1])[1:] + '吨'
     elif float(stock2[-1][-2]) - float(stock2[-1][-3]) == 0:
         updown_mengkuang = '不变'
         diff_mengkuang = ''
@@ -153,7 +155,7 @@ def report():
     line3 = []
     # wb = load_workbook('E:\\python\\website\\static\\周报材料\\cnfeol2.xlsx')
     wb = load_workbook('./static/周报材料/cnfeol2.xlsx')
-    ws = wb.get_active_sheet()
+    ws = wb.active
     for row in range(ws.max_row):
         for col in range(ws.max_column):
             line3.append(ws.cell(row=(row + 1), column=(col + 1)).value)
@@ -166,7 +168,7 @@ def report():
     line4 = []
     # wb = load_workbook('E:\\python\\website\\static\\周报材料\\cnfeol3.xlsx')
     wb = load_workbook('./static/周报材料/cnfeol3.xlsx')
-    ws = wb.get_active_sheet()
+    ws = wb.active
     for row in range(ws.max_row):
         for col in range(ws.max_column):
             line4.append(ws.cell(row=(row + 1), column=(col + 1)).value)
@@ -491,4 +493,5 @@ def wenbentiqu():
     return render_template('wenbentiqu.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port='80')
+    # app.run(host='0.0.0.0',port='80')
+    app.run(debug='ture')
