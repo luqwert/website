@@ -15,7 +15,7 @@ idna==2.9
 itsdangerous==1.1.0
 javascripthon==0.11
 jdcal==1.4.1
-Jinja2==2.11.1
+Jinja2==2.11.3
 jupyter-echarts-pypkg==0.1.1
 kiwisolver==1.1.0
 lml==0.0.2
