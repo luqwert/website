@@ -51,6 +51,6 @@ soupsieve==2.0
 tqdm==4.44.1
 urllib3==1.25.8
 Wand==0.5.9
-websockets==8.1
+websockets==9.1
 Werkzeug==1.0.1
 xlrd==1.2.0
